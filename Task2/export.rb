@@ -8,10 +8,6 @@ module ExportCsv
       all.each { |user| csv << user }
     end
     end
-
-    def all
-     ObjectSpace.each_object(self).map(&:create)
-    end
   end
 
   def self.included(base)

@@ -1,5 +1,4 @@
 require_relative 'export'
-#require_relative 'post'
 
 class User
   attr_accessor :name, :age, :email
@@ -36,14 +35,6 @@ class User
   end
 end
 
-user1 = User.new(name:"Alex", age: "31", email: "my_mail")
-user2 = User.new(name:"Ivan", age: "32", email: "his_mail")
-#puts user1.create
-#user2.remove
-#user_updated = user1.update(name:"Marina", age: "28", email: "her_mail")
-#puts User.all
-#User.save_to_csv
-
 class Post
 
   def initialize(title:, body:, owner_email:)
@@ -52,7 +43,7 @@ class Post
     @owner_email = owner_email
   end
 
-  def create#(title:, body:, owner_email:)
+  def create
     @posts = [@title, @body, @owner_email]
   end
 
@@ -69,6 +60,3 @@ class Post
   end
 
 end
-
-#post = User.new(name:"Igor", age: "40", email: "igor_mail")
-user1.generate(title: "post", body: "post_body", owner_email: "owner_email")

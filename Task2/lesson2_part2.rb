@@ -47,7 +47,7 @@ class UserData
   end
 end
 
-#puts UserData.to_h
-#puts UserData.over_19_years_old
+puts UserData.to_h
+puts UserData.over_19_years_old
 puts UserData.sorted_by_name
 puts UserData.array_of_domains
