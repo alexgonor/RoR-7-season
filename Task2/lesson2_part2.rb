@@ -34,16 +34,16 @@ class UserData
   end
 
   def self.over_19_years_old
-    to_h.select { |k, v| v[0] > 19 }
+    to_h.select { |_k, v| v[0] > 19 }
   end
 
   def self.sorted_by_name
-    to_h.sort_by {|k, v| v[1] }.to_h
+    to_h.sort_by { |_k, v| v[1] }.to_h
   end
 
   def self.array_of_domains
     array = to_h.keys
-    array.map { |x| x.gsub(/.*?(?>@)/im, "")}
+    array.map { |x| x.gsub(/.*?(?>@)/im, '') }
   end
 end
 

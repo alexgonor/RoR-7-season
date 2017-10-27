@@ -1,0 +1,29 @@
+<%= form_for @student do |f| %>
+
+  <% if @student.errors.any? %>
+      <div id="error_explanation">
+        <h2>
+          <%= pluralize(@student.errors.count, "error") %> prohibited
+          this article from being saved:
+        </h2>
+        <ul>
+          <% @student.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+  <p>
+    <%= f.label :name %><br>
+    <%= f.text_field :name %><br>
+
+    <%= f.label :score %><br>
+    <%= f.number_field :score %>
+  </p>
+
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>
+<%= link_to 'Назад', students_path %>

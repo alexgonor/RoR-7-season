@@ -1,12 +1,10 @@
 module ExportCsv
-
   module ClassMethods
-
-   def save_to_csv
-     require "csv"
-     CSV.open('users.csv', 'w') do |csv|
-      all.each { |user| csv << user }
-    end
+    def save_to_csv
+      require 'csv'
+      CSV.open('users.csv', 'w') do |csv|
+        all.each { |user| csv << user }
+      end
     end
   end
 

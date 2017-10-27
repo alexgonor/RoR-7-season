@@ -30,10 +30,15 @@ class User
    ObjectSpace.each_object(self).map(&:create)
   end
 
-  def generate(title:, body:, owner_email:)
-    Post.new
-  end
+  #def generate(title:, body:, owner_email:)
+    #Post.new
+  #end
 end
+
+User.new(name: "Alex", age: 31, email: "my_mail")
+User.new(name: "Marina", age: 28, email: "marina_mail")
+puts User.all
+User.save_to_csv
 
 class Post
 
@@ -58,5 +63,4 @@ class Post
     @body = nil
     @owner_email = nil
   end
-
 end

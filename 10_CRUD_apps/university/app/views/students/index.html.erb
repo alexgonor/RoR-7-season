@@ -1,0 +1,21 @@
+<h1>Listing students</h1>
+
+<%= link_to 'Новый студент', new_student_path %>
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Score</th>
+    <th></th>
+  </tr>
+
+  <% @students.each do |student| %>
+    <tr>
+      <td><%= student.name %></td>
+      <td><%= student.score %></td>
+      <td><%= link_to 'Показать', student %></td>
+      <td><%= link_to 'Редактировать', edit_student_path(student) %></td>
+      <td><%= link_to 'Удалить', student,
+              confirm: 'Are you sure?', method: :delete %></td>
+    </tr>
+  <% end %>
+</table>
