@@ -1,0 +1,11 @@
+<p>
+  <strong>Rank:</strong>
+  <%= @solder.rank %>
+</p>
+
+<p>
+  <strong>Text:</strong>
+  <%= @solder.specialization %>
+</p>
+<%= link_to 'Back', solders_path %>
+<%= link_to 'Edit', edit_solder_path(@solder) %>

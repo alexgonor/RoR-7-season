@@ -1,0 +1,21 @@
+<h1>Listing solders</h1>
+<%= link_to 'New solder', new_solder_path %>
+<table>
+  <tr>
+    <th>Rank</th>
+    <th>Specialization</th>
+    <th></th>
+  </tr>
+
+  <% @solders.each do |solder| %>
+    <tr>
+      <td><%= solder.rank %></td>
+      <td><%= solder.specialization %></td>
+      <td><%= link_to 'Show', solder_path(solder) %></td>
+      <td><%= link_to 'Edit', edit_solder_path(solder) %></td>
+      <td><%= link_to 'Destroy', solder_path(solder),
+              method: :delete,
+              data: { confirm: 'Are you sure?' } %></td>
+    </tr>
+  <% end %>
+</table>

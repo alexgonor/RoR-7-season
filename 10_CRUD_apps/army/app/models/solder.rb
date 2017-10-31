@@ -1,0 +1,2 @@
+class Solder < ApplicationRecord
+end

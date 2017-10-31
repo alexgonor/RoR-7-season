@@ -1,0 +1,21 @@
+<h1>Listing engines</h1>
+<%= link_to 'New engine', new_engine_path %>
+<table>
+  <tr>
+    <th>Capasity</th>
+    <th>Power</th>
+    <th></th>
+  </tr>
+
+  <% @engines.each do |engine| %>
+    <tr>
+      <td><%= engine.capasity %></td>
+      <td><%= engine.power %></td>
+      <td><%= link_to 'Show', engine_path(engine) %></td>
+      <td><%= link_to 'Edit', edit_engine_path(engine) %></td>
+      <td><%= link_to 'Destroy', engine_path(engine),
+              method: :delete,
+              data: { confirm: 'Are you sure?' } %></td>
+    </tr>
+  <% end %>
+</table>

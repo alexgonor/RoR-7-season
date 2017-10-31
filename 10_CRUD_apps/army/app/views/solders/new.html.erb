@@ -1,0 +1,31 @@
+<%= form_with scope: :solder, url: solders_path, local: true do |form| %>
+
+  <% if @solder.errors.any? %>
+      <div id="error_explanation">
+        <h2>
+          <%= pluralize(@solder.errors.count, "error") %> prohibited
+          this solder from being saved:
+        </h2>
+        <ul>
+          <% @solder.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+  <p>
+    <%= form.label :rank %><br>
+    <%= form.number_field :rank %>
+  </p>
+
+  <p>
+    <%= form.label :specialization %><br>
+    <%= form.text_area :specialization %>
+  </p>
+
+  <p>
+    <%= form.submit %>
+  </p>
+<% end %>
+<%= link_to 'Back', solders_path %>
