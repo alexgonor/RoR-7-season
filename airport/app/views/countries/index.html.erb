@@ -1,0 +1,19 @@
+<h1>Listing countries</h1>
+<%= link_to 'New country', new_flight_plane_country_path %>
+<table>
+  <tr>
+    <th>Name</th>
+    <th></th>
+  </tr>
+
+  <% @countries.each do |country| %>
+  <tr>
+    <td><%= country.name %></td>
+    <td><%= link_to 'Show', flight_plane_country_path(@flight, @plane, country) %></td>
+    <td><%= link_to 'Edit', edit_flight_plane_country_path(@flight, @plane, country) %></td>
+    <td><%= link_to 'Destroy', flight_plane_country_path(@flight, @plane, country),
+            method: :delete,
+            data: { confirm: 'Are you sure?' } %></td>
+  <% end %>
+</table>
+<%= link_to 'Root', flights_path %>

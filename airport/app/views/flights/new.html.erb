@@ -1,0 +1,17 @@
+<%= form_with scope: :flight, url: flights_path, local: true do |form| %>
+
+<p>
+  <%= form.label :bord_number %><br />
+  <%= form.number_field :bord_number %>
+</p>
+
+<p>
+  <%= form.label :passengers_count %><br />
+  <%= form.number_field :passengers_count %>
+</p>
+
+<p>
+  <%= form.submit %>
+</p>
+<% end %>
+<%= link_to 'Back', flights_path %>

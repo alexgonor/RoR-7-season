@@ -1,0 +1,16 @@
+<h2>Add a plane</h2>
+<%= form_with(model: [ @flight, @flight.planes.build ], local: true) do |form| %>
+  <p>
+    <%= form.label :model %><br />
+    <%= form.text_field :model %>
+  </p>
+  <p>
+    <%= form.label :max_speed %><br />
+    <%= form.number_field :max_speed %>
+  </p>
+  <p>
+    <%= form.submit %>
+  </p>
+<% end %>
+<%= link_to 'Back', flight_planes_path %>
+<%= link_to 'Root', flights_path %>

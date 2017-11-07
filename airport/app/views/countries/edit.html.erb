@@ -1,0 +1,13 @@
+<h1>Editing country</h1>
+<%= form_with(model: @country, url: flight_plane_country_path, method: :patch, local: true) do |form| %>
+
+<p>
+  <%= form.label :name %><br />
+  <%= form.text_field :name %>
+</p>
+
+<p>
+  <%= form.submit %>
+</p>
+<% end %>
+<%= link_to 'Back', flight_plane_countries_path %>

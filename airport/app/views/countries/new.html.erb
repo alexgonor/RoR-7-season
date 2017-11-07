@@ -1,0 +1,12 @@
+<h2>Add a country</h2>
+<%= form_with scope: :country, url: flight_plane_countries_path, local: true do |form| %>
+  <p>
+    <%= form.label :name %><br />
+    <%= form.text_field :name %>
+  </p>
+  <p>
+    <%= form.submit %>
+  </p>
+<% end %>
+<%= link_to 'Back', flight_plane_countries_path %>
+<%= link_to 'Root', flights_path %>

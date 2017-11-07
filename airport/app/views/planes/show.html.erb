@@ -1,0 +1,14 @@
+<p>
+  <strong>Model:</strong>
+  <%= @plane.model %>
+</p>
+
+<p>
+   <strong>Max speed:</strong>
+   <%= @plane.max_speed %>
+</p>
+
+<%= link_to 'New country', new_flight_plane_country_path(@flight, @plane) %>|
+<%= link_to 'All countries', flight_plane_countries_path(@flight, @plane) %><br /><br />
+<%= link_to 'Edit', edit_flight_plane_path(@flight, @plane) %>
+<%= link_to 'Back', flight_planes_path %>
