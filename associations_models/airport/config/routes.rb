@@ -2,7 +2,9 @@ Rails.application.routes.draw do
 
   resources :flights do
     resources :planes do
-      resources :countries
+      resources :countries do
+        resources :sities
+      end
     end
   end
 

@@ -1,0 +1,12 @@
+<h2>Add sity</h2>
+<%= form_with scope: :sity, url: flight_plane_country_sities_path, local: true do |form| %>
+  <p>
+    <%= form.label :name %><br />
+    <%= form.text_field :name %>
+  </p>
+  <p>
+    <%= form.submit %>
+  </p>
+<% end %>
+<%= link_to 'Back', flight_plane_country_sities_path %>
+<%= link_to 'Root', flights_path %>
