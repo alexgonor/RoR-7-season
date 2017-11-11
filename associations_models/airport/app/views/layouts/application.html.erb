@@ -9,6 +9,12 @@
   </head>
 
   <body>
+    <% if current_model %>
+    <%= link_to 'Flights', flights_path %>
+    <%= link_to 'Sign out', destroy_model_session_path, method: :delete %>
+    <% else %>
+    <%= link_to 'Sign in', new_model_session_path %>
+    <% end %>
     <%= yield %>
   </body>
 </html>

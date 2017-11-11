@@ -3,7 +3,7 @@ class PlanesController < ApplicationController
   before_action :find_plane, only: [:show, :edit, :update, :destroy]
 
   def index
-    @planes = @flight.planes
+    @planes = Plane.paginate(:page => params[:page])
   end
 
   def new
@@ -15,7 +15,7 @@ class PlanesController < ApplicationController
 
   def create
     @plane = @flight.planes.create(plane_params)
-    redirect_to flight_path(@flight)
+    redirect_to flight_planes_path(@flight)
   end
 
   def edit
@@ -37,7 +37,7 @@ class PlanesController < ApplicationController
   private
 
   def plane_params
-    params.require(:plane).permit(:model, :max_speed)
+    params.require(:plane).permit(:model, :max_speed, :avatar, countries_attributes: [:name])
   end
 
   def find_flight

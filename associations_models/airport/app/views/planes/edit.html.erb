@@ -12,6 +12,11 @@
 </p>
 
 <p>
+  <%= image_tag(@plane.avatar_url(:thumb)) %>
+  <%= form.file_field :avatar %>
+</p>
+
+<p>
   <%= form.submit %>
 </p>
 <% end %>

@@ -42,7 +42,7 @@ class CountriesController < ApplicationController
   end
 
   def find_plane
-    @plane = @flight.planes.find(params[:plane_id])
+    @plane = Plane.find(params[:plane_id])
   end
 
   def find_country

@@ -1,5 +1,5 @@
 <h2>Add a plane</h2>
-<%= form_with(model: [ @flight, @flight.planes.build ], local: true) do |form| %>
+<%= form_with scope: :plane, url: flight_planes_path, local: true do |form| %>
   <p>
     <%= form.label :model %><br />
     <%= form.text_field :model %>
@@ -7,6 +7,13 @@
   <p>
     <%= form.label :max_speed %><br />
     <%= form.number_field :max_speed %>
+  </p>
+  <p>
+    <%= form.file_field :avatar %><br><br>
+    <%= form.fields_for :countries do |ff| %>
+    <%= ff.label :name, 'Country name' %><br><br>
+    <%= ff.text_field :name %><br><br>
+  <% end %>
   </p>
   <p>
     <%= form.submit %>
