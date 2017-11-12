@@ -1,0 +1,23 @@
+<h1>Listing waiters</h1>
+<%= link_to 'New waiter', new_cook_waiter_path %>
+<table>
+  <tr>
+    <th>Name</th>
+    <th></th>
+  </tr>
+
+  <% @waiters.each do |waiter| %>
+  <tr>
+    <td><%= waiter.name %></td>
+    <td><%= link_to 'Show', cook_waiter_path(@cook, waiter) %></td>
+    <td><%= link_to 'Edit', edit_cook_waiter_path(@cook, waiter) %></td>
+    <td><%= link_to 'Destroy', cook_waiter_path(@cook, waiter),
+            method: :delete,
+            data: { confirm: 'Are you' } %></td>
+  </tr>
+  <% end %>
+</table>
+<br />
+<br />
+<%= link_to 'Cooks/Back', cooks_path %>
+<%= will_paginate @waiters %>

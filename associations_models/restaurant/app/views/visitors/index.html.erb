@@ -1,0 +1,21 @@
+<h1>Listing visitors</h1>
+<%= link_to 'New visitor', new_cook_waiter_visitor_path %>
+<table>
+  <tr>
+    <th>Name:</th>
+    <th></th>
+  </tr>
+
+  <% @visitors.each do |visitor| %>
+  <tr>
+    <td><%= visitor.name %></td>
+    <td><%= link_to 'Show', cook_waiter_visitor_path(@cook, @waiter, visitor) %></td>
+    <td><%= link_to 'Edit', edit_cook_waiter_visitor_path(@cook, @waiter, visitor) %></td>
+    <td><%= link_to 'Destroy', cook_waiter_visitor_path(@cook, @waiter, visitor),
+            method: :delete,
+            data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+  <% end %>
+</table>
+<%= link_to 'Cooks', cooks_path %>
+<%= link_to 'Back', cook_waiters_path %>

@@ -1,0 +1,7 @@
+<p>
+  <strong>Name:</strong>
+  <%= @visitor.name %>
+</p>
+
+<%= link_to 'New menu', new_cook_waiter_visitor_menu_path(@cook, @waiter, @visitor) %>|
+<%= link_to 'Back', cook_waiter_visitors_path %>

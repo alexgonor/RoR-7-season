@@ -1,0 +1,6 @@
+<p>
+  <strong>Name of menu:</strong>
+  <%= @visitor.menu.name if @visitor.menu %>
+</p>
+
+<%= link_to 'Back', cook_waiter_visitor_path(@cook, @waiter, @visitor) %>

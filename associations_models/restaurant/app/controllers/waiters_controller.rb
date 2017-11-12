@@ -1,7 +1,9 @@
 class WaitersController < ApplicationController
+  before_action :find_cook
+  before_action :find_waiter, only: [:show, :edit, :update, :destroy]
 
   def index
-    @waiters = Waiter.all
+    @waiters = @cook.waiters.paginate(:page => params[:page])
   end
 
   def new
@@ -12,7 +14,7 @@ class WaitersController < ApplicationController
   end
 
   def create
-    @waiter =@cook.waiters.create(waiter_params)
+    @waiter = @cook.waiters.create(waiter_params)
     redirect_to cook_waiters_path(@cook)
   end
 
@@ -30,5 +32,19 @@ class WaitersController < ApplicationController
   def destroy
     @waiter.destroy
     redirect_to cook_waiters_path
+  end
+
+  private
+
+  def find_cook
+    @cook = Cook.find(params[:cook_id])
+  end
+
+  def find_waiter
+    @waiter = @cook.waiters.find(params[:id])
+  end
+
+  def waiter_params
+    params.require(:waiter).permit(:name, :avatar)
   end
 end

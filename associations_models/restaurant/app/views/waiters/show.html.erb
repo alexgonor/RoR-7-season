@@ -1,0 +1,12 @@
+<p>
+  <strong>Name:</strong>
+  <%= @waiter.name %>
+</p>
+
+<p>
+  <%= image_tag(@waiter.avatar_url(:thumb)) %>
+</p>
+
+<%= link_to 'New visitor', new_cook_waiter_visitor_path(@cook, @waiter) %>|
+<%= link_to 'All visitors', cook_waiter_visitors_path(@cook, @waiter) %><br /><br />
+<%= link_to 'Back', cook_waiters_path %>

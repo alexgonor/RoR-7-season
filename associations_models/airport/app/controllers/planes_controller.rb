@@ -3,11 +3,12 @@ class PlanesController < ApplicationController
   before_action :find_plane, only: [:show, :edit, :update, :destroy]
 
   def index
-    @planes = Plane.paginate(:page => params[:page])
+    @planes = @flight.planes.paginate(:page => params[:page])
   end
 
   def new
     @plane = @flight.planes.new
+    @plane.countries.build
   end
 
   def show

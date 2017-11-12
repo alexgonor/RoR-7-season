@@ -1,0 +1,18 @@
+<h1>Editing waiter</h1>
+<%= form_with(model: @waiter, url: cook_waiter_path, method: :patch, local: true) do |form| %>
+
+<p>
+  <%= form.label :name %><br />
+  <%= form.text_field :name %>
+</p>
+
+<p>
+  <%= image_tag(@waiter.avatar_url(:thumb)) %>
+  <%= form.file_field :avatar %>
+</p>
+
+<p>
+  <%= form.submit %>
+</p>
+<% end %>
+<%= link_to 'Back', cook_waiters_path %>
