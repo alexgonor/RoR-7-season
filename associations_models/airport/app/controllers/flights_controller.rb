@@ -1,5 +1,5 @@
 class FlightsController < ApplicationController
-  before_action :find_flight, only: [:show, :edit, :update, :destroy]
+  before_action :find_flight, only: %i[show edit update destroy]
 
   def index
     @flights = Flight.all
@@ -9,8 +9,7 @@ class FlightsController < ApplicationController
     @flight = Flight.new
   end
 
-  def show
-  end
+  def show; end
 
   def create
     @flight = Flight.new(flight_params)
@@ -22,8 +21,7 @@ class FlightsController < ApplicationController
     end
   end
 
-  def edit
-  end
+  def edit; end
 
   def update
     if @flight.update(flight_params)

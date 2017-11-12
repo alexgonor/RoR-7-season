@@ -1,9 +1,9 @@
 class PlanesController < ApplicationController
   before_action :find_flight
-  before_action :find_plane, only: [:show, :edit, :update, :destroy]
+  before_action :find_plane, only: %i[show edit update destroy]
 
   def index
-    @planes = @flight.planes.paginate(:page => params[:page])
+    @planes = @flight.planes.paginate(page: params[:page])
   end
 
   def new
@@ -11,16 +11,14 @@ class PlanesController < ApplicationController
     @plane.countries.build
   end
 
-  def show
-  end
+  def show; end
 
   def create
     @plane = @flight.planes.create(plane_params)
     redirect_to flight_planes_path(@flight)
   end
 
-  def edit
-  end
+  def edit; end
 
   def update
     if @plane.update(plane_params)

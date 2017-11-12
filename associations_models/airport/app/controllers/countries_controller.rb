@@ -1,7 +1,7 @@
 class CountriesController < ApplicationController
   before_action :find_flight
   before_action :find_plane
-  before_action :find_country, only: [:show, :edit, :update, :destroy]
+  before_action :find_country, only: %i[show edit update destroy]
 
   def index
     @countries = @plane.countries
@@ -11,16 +11,14 @@ class CountriesController < ApplicationController
     @country = @plane.countries.new
   end
 
-  def show
-  end
+  def show; end
 
   def create
     @country = @plane.countries.create(country_params)
     redirect_to flight_plane_country_path(@flight, @plane, @country)
   end
 
-  def edit
-  end
+  def edit; end
 
   def update
     if @country.update(country_params)

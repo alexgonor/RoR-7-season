@@ -1,5 +1,4 @@
 class AvatarUploader < CarrierWave::Uploader::Base
-
   # Include RMagick or MiniMagick support:
   include CarrierWave::RMagick
   include CarrierWave::MiniMagick
@@ -22,7 +21,7 @@ class AvatarUploader < CarrierWave::Uploader::Base
   #   "/images/fallback/" + [version_name, "default.png"].compact.join('_')
   # end
   def default_url
-    "/assets/fallback/" + [version_name, "default.png"].compact.join('_')
+    '/assets/fallback/' + [version_name, 'default.png'].compact.join('_')
   end
 
   # Process files as they are uploaded:
@@ -48,5 +47,4 @@ class AvatarUploader < CarrierWave::Uploader::Base
   # def filename
   #   "something.jpg" if original_filename
   # end
-
 end
