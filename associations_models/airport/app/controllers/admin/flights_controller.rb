@@ -1,5 +1,5 @@
-class FlightsController < ApplicationController
-  before_action :find_flight, only: %i[show edit update]
+class Admin::FlightsController < Admin::ApplicationController
+  before_action :find_flight, only: %i[show edit update destroy]
 
   def index
     @flights = Flight.all
@@ -15,7 +15,7 @@ class FlightsController < ApplicationController
     @flight = Flight.new(flight_params)
 
     if @flight.save
-      redirect_to @flight
+      redirect_to admin_flight_path
     else
       render 'new'
     end
@@ -25,18 +25,16 @@ class FlightsController < ApplicationController
 
   def update
     if @flight.update(flight_params)
-      redirect_to @flight
+      redirect_to admin_flight_path
     else
       render 'edit'
     end
   end
 
-  # def destroy
-  #   if current_model.admin?
-  #     @flight.destroy
-  #     redirect_to flights_path
-  #   end
-  # end
+  def destroy
+    @flight.destroy
+    redirect_to admin_flights_path
+  end
 
   private
 

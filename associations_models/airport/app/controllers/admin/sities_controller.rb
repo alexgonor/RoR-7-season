@@ -1,6 +1,6 @@
-class SitiesController < ApplicationController
+class Admin::SitiesController < Admin::ApplicationController
   before_action :find_flight, :find_plane, :find_country
-  before_action :find_sity, only: %i[show edit update]
+  before_action :find_sity, only: %i[show edit update destroy]
 
   def index
     @sities = @country.sities
@@ -14,25 +14,23 @@ class SitiesController < ApplicationController
 
   def create
     @sity = @country.sities.create(sity_params)
-    redirect_to flight_plane_country_sity_path(@flight, @plane, @country, @sity)
+    redirect_to admin_flight_plane_country_sity_path(@flight, @plane, @country, @sity)
   end
 
   def edit; end
 
   def update
     if @sity.update(sity_params)
-      redirect_to flight_plane_country_sity_path
+      redirect_to admin_flight_plane_country_sity_path
     else
       render 'edit'
     end
   end
 
-  # def destroy
-  #   if current_model.admin?
-  #     @sity.destroy
-  #     redirect_to flight_plane_country_sities_path
-  #   end
-  # end
+  def destroy
+    @sity.destroy
+    redirect_to admin_flight_plane_country_sities_path
+  end
 
   private
 

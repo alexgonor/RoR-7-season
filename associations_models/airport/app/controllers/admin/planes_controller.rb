@@ -1,6 +1,6 @@
-class PlanesController < ApplicationController
+class Admin::PlanesController < Admin::ApplicationController
   before_action :find_flight
-  before_action :find_plane, only: %i[show edit update]
+  before_action :find_plane, only: %i[show edit update destroy]
 
   def index
     @planes = @flight.planes.paginate(page: params[:page])
@@ -15,25 +15,23 @@ class PlanesController < ApplicationController
 
   def create
     @plane = @flight.planes.create(plane_params)
-    redirect_to flight_planes_path(@flight)
+    redirect_to admin_flight_planes_path(@flight)
   end
 
   def edit; end
 
   def update
     if @plane.update(plane_params)
-      redirect_to flight_plane_path
+      redirect_to admin_flight_plane_path
     else
       render 'edit'
     end
   end
 
-  # def destroy
-  #   if current_model.admin?
-  #     @plane.destroy
-  #     redirect_to flight_planes_path
-  #   end
-  # end
+  def destroy
+    @plane.destroy
+    redirect_to admin_flight_planes_path
+  end
 
   private
 

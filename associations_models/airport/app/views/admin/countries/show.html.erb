@@ -1,0 +1,9 @@
+<p>
+  <strong>Name:</strong>
+  <%= @country.name %>
+</p>
+
+<%= link_to 'New sity', new_admin_flight_plane_country_sity_path(@flight, @plane, @country) %>|
+<%= link_to 'All sities', admin_flight_plane_country_sities_path(@flight, @plane, @country) %><br /><br />
+<%= link_to 'Edit', edit_admin_flight_plane_country_path(@flight, @plane, @country) %>
+<%= link_to 'Back', admin_flight_plane_countries_path %>

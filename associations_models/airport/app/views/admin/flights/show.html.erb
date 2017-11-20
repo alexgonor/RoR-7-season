@@ -1,0 +1,14 @@
+ <p>
+   <strong>Bord number:</strong>
+   <%= @flight.bord_number %>
+ </p>
+
+ <p>
+   <strong>Passengers_count:</strong>
+   <%= @flight.passengers_count %>
+ </p>
+
+<%= link_to 'New plane', new_admin_flight_plane_path(@flight) %>|
+<%= link_to 'All planes', admin_flight_planes_path(@flight) %><br /><br />
+<%= link_to 'Back', admin_flights_path %>|
+<%= link_to 'Edit', edit_admin_flight_path(@flight) %>

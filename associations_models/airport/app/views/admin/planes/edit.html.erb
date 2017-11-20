@@ -1,0 +1,23 @@
+<h1>Editing plane</h1>
+<%= form_with(model: @plane, url: admin_flight_plane_path, method: :patch, local: true) do |form| %>
+
+<p>
+  <%= form.label :model %><br />
+  <%= form.text_field :model %>
+</p>
+
+<p>
+  <%= form.label :max_speed %><br />
+  <%= form.number_field :max_speed %>
+</p>
+
+<p>
+  <%= image_tag(@plane.avatar_url(:thumb)) %>
+  <%= form.file_field :avatar %>
+</p>
+
+<p>
+  <%= form.submit %>
+</p>
+<% end %>
+<%= link_to 'Back', admin_flight_planes_path %>
