@@ -1,0 +1,10 @@
+<td><%= user.id %></td>
+<td><%= user.email %></td>
+<td>
+  <% if user.admin? %>
+    <%= link_to 'Make user', admin_user_path(user, user: { admin: false }), method: :patch, remote: true %>
+  <% else %>
+    <%= link_to 'Make admin', admin_user_path(user, user: { admin: true }), method: :patch, remote: true %>
+  <% end %>
+  <td><%= link_to 'Destroy', admin_user_path(user), method: :delete, remote: true  %></td>
+</td>
