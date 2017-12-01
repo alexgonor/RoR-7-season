@@ -22,7 +22,16 @@ t.string :avatar
 rails db:migrate
 
 To apl_contr add:
+before_action :configure_permitted_parameters, if: :devise_controller?
+
 before_action :authenticate_user!
+
+def configure_permitted_parameters
+    devise_parameter_sanitizer.permit(:sign_up) { |u| u.permit(:email, :password,
+      :password_confirmation, :remember_me, :avatar) }
+    devise_parameter_sanitizer.permit(:account_update) { |u| u.permit(:email, :password,
+      :password_confirmation, :current_password, :avatar) }
+end
 
 rails generate uploader Avatar
 
@@ -65,28 +74,14 @@ In views do welcome/index.erb
 
 rails g controller users
 In controller
-before_action :find_user, only: :show
-
-  def index
-  end
-
-  def new
-    @user = User.new
-  end
-
-  def create
-    @user = User.create(user_params)
-
-    redirect_to users_path
-  end
-
-  def show
-  end
-
-  def edit
-  end
+before_action :current_user, only: %i[show edit update]
 
   def update
+    if @user.update(user_params)
+      redirect_to @user
+    else
+      render :edit
+    end
   end
 
 private
@@ -96,7 +91,7 @@ private
   end
 
   def user_params
-    params.require(:user).permit(:email)
+    params.require(:user).permit(:email, :password, :avatar)
   end
 
 Do admin folder in controllers admin/users_controller.rb
@@ -105,7 +100,7 @@ class Admin::UsersController < Admin::ApplicationController
   before_action :find_user, except: :index
 
   def index
-    @users = User.all
+    @users = User.paginate(page: params[:page], per_page: 5)
   end
 
   def show
@@ -115,9 +110,15 @@ class Admin::UsersController < Admin::ApplicationController
   end
 
   def update
+    if @user.update(user_params)
+      redirect_to admin_users_path
+    else
+      render :edit
+    end
   end
 
   def destroy
+    @users = User.paginate(page: params[:page], per_page: 5)
     @user.destroy
 
     redirect_to admin_users_path
@@ -130,7 +131,7 @@ class Admin::UsersController < Admin::ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:admin)
+    params.require(:user).permit(:email, :password, :avatar, :admin)
   end
 end
 
@@ -206,10 +207,18 @@ In views/admin/users do _user.html.erb
     <%= link_to 'Make admin', admin_user_path(user, user: { admin: true }), method: :patch, remote: true %>
   <% end %>
   <td><%= link_to 'Destroy', admin_user_path(user), method: :delete, remote: true  %></td>
+  <td><%= user.avatar.present? ? image_tag(user.avatar_url(:thumb)) : 'No Avatar' %></td>
+  <td><%= link_to 'Edit', edit_admin_user_path(user) %></td>
 </td>
 
 In views/admin/users do destroy.js.erb
-$('#user_ <%= @user.id %>').remove()
+$("#users").html('<%= escape_javascript(render @users) %>')
+
+In devise/registrations/new.html.erb
+<div>
+    <%= f.label :avatar %>
+    <%= f.file_field :avatar %>
+</div>
 
 In views/admin/users do update.js.erb
 $("#user_<%= @user.id %>").html('<%= escape_javascript(render @user) %>')
