@@ -1,0 +1,10 @@
+.row
+  .col-md-4
+    h1 New message
+
+    = form_for [current_user, @message], class: 'form-horizontal' do |f|
+      .form-group
+        = f.label :input
+        = f.text_field :input, class: 'form-control'
+      .form-group
+        = f.submit 'Submit', class: 'btn btn-default'

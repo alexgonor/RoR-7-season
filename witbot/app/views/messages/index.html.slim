@@ -1,0 +1,12 @@
+.row
+  .col-md-6.col-md-offset-3.messages-index-table
+    table.table.table-bordered
+      thead
+        tr
+          th Input
+          th Output
+      tbody
+        - @messages.each do |message|
+          tr
+            td = message.input
+            td = message.output
